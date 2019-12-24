@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -26,13 +27,19 @@ class MyHomePage extends StatelessWidget {
         title: Text("App bar"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[Card(color: Colors.blue, child: Container(child: Text("Chart"), width: double.infinity,), elevation: 5, ),
+        Card(elevation: 5,child: Container(padding: EdgeInsets.all(10) ,child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[TextField(decoration: InputDecoration(labelText: "Title"),), 
+        TextField(decoration: InputDecoration(labelText: "Amount")), 
+        FlatButton(child: Text('Add Transaction'), textColor: Colors.deepOrange, onPressed: (){
+          
+        },)],)),),
+        
         Column(children: transactions.map((transcation) {
           return Card(child: Row(children: <Widget>[Container(child: Text('\$' + transcation.amount.toString(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.deepOrange)), 
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15), decoration: BoxDecoration(border: Border.all()), padding: EdgeInsets.all(13),
-          ), Column(children: <Widget> [Text(transcation.title.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),), Text(transcation.date.toString(), )] 
-          , crossAxisAlignment: CrossAxisAlignment.start,)
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15), decoration: BoxDecoration(border: Border.all(color: Colors.grey)), padding: EdgeInsets.all(8),
+          ), Column(children: <Widget> [Text(transcation.title.toString(), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),), Text(DateFormat().format(transcation.date,),style: TextStyle(color: Colors.grey))] 
+          , crossAxisAlignment: CrossAxisAlignment.start, )
           ],
           ),
           );
