@@ -1,38 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import './transaction.dart';
+import 'transaction.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My app',
-       home: MyHomePage());
-       
-   }
+  State<StatefulWidget> createState() {
+    return MyHomePage();
+  }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends State {
+  final List<Transaction> transactions = [
+      Transaction(id: "PS4", title: "PS4 Pro", amount: "399", date:DateTime.now()),
+      Transaction(id: "Switch", title: "Nintendo Switch", amount: "399.9", date:DateTime.now()),
+    ];
+    String titleInput;
+    String amountInput;
   @override
   Widget build(BuildContext context) {
-    final List<Transaction> transactions = [
-      Transaction(id: "PS4", title: "PS4 Pro", amount: 399, date:DateTime.now()),
-      Transaction(id: "Switch", title: "Nintendo Switch", amount: 399.9, date:DateTime.now()),
-    ];
-    return Scaffold(
+    
+    return MaterialApp(home: Scaffold(
       appBar: AppBar(
         title: Text("App bar"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[Card(color: Colors.blue, child: Container(child: Text("Chart"), width: double.infinity,), elevation: 5, ),
-        Card(elevation: 5,child: Container(padding: EdgeInsets.all(10) ,child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[TextField(decoration: InputDecoration(labelText: "Title"),), 
-        TextField(decoration: InputDecoration(labelText: "Amount")), 
+        Card(elevation: 5,child: Container(padding: EdgeInsets.all(10) ,child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[TextField(decoration: InputDecoration(labelText: "Title"), onChanged: (value){this.titleInput = value;},), 
+        TextField(decoration: InputDecoration(labelText: "Amount"), onChanged: (value){this.amountInput = value;},), 
         FlatButton(child: Text('Add Transaction'), textColor: Colors.deepOrange, onPressed: (){
-          
+          setState(() {
+            transactions.add(Transaction(id: "1", title: this.titleInput, amount: this.amountInput, date: DateTime.now()));
+          });
         },)],)),),
         
         Column(children: transactions.map((transcation) {
@@ -45,6 +47,6 @@ class MyHomePage extends StatelessWidget {
           );
         }).toList(),)]
       ),
-    );
+    ));
   }
 }
