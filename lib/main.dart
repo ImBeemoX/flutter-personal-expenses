@@ -53,7 +53,7 @@ class MyHomePage extends State {
                     },
                   ),
                   FlatButton(
-                    child: Text('Add Transaction'),
+                    child: Text('Add New Transaction'),
                     textColor: Colors.deepOrange,
                     onPressed: () {
                       setState(() {
