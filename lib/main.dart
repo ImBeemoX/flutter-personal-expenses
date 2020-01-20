@@ -41,7 +41,7 @@ class MyHomePage extends State {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   TextField(
-                    decoration: InputDecoration(labelText: "Title"),
+                    decoration: InputDecoration(labelText: "ItemName"),
                     onChanged: (value) {
                       this.titleInput = value;
                     },
