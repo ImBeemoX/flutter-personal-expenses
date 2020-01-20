@@ -29,7 +29,7 @@ class MyHomePage extends State {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: Text("App bar"),
+        title: Text("Transaction"),
       ),
       body:
           Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
