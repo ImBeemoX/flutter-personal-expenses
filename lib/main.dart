@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class MyHomePage extends State {
   final List<Transaction> transactions = [
     Transaction(
-        id: "PS4", title: "PS4 Pro", amount: "398", date: DateTime.now()),
+        id: "PS4", title: "PS4 Pro", amount: "496", date: DateTime.now()),
     Transaction(
         id: "Switch",
         title: "Nintendo Switch",
