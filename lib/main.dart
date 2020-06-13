@@ -14,16 +14,17 @@ class MyApp extends StatefulWidget {
 
 class MyHomePage extends State {
   final List<Transaction> transactions = [
-    Transaction(
-        id: "PS4", title: "PS4 Pro", amount: "498", date: DateTime.now()),
+    Transaction(id: "PS4", title: "PS4", amount: "499", date: DateTime.now()),
     Transaction(
         id: "Switch",
         title: "Nintendo Switch",
         amount: "399.9",
         date: DateTime.now()),
   ];
-  String titleInput;
-  String amountInput;
+  // String titleInput;
+  // String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,15 +43,17 @@ class MyHomePage extends State {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(labelText: "ItemName"),
-                    onChanged: (value) {
-                      this.titleInput = value;
-                    },
+                    controller: titleController,
+                    // onChanged: (value) {
+                    //   this.titleInput = value;
+                    // },
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: "Amount"),
-                    onChanged: (value) {
-                      this.amountInput = value;
-                    },
+                    controller: amountController,
+                    // onChanged: (value) {
+                    //   this.amountInput = value;
+                    // },
                   ),
                   FlatButton(
                     child: Text('Add New Transaction'),
@@ -59,8 +62,8 @@ class MyHomePage extends State {
                       setState(() {
                         transactions.add(Transaction(
                             id: "1",
-                            title: this.titleInput,
-                            amount: this.amountInput,
+                            title: this.titleController.text,
+                            amount: this.amountController.text,
                             date: DateTime.now()));
                       });
                     },
